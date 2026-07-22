@@ -60,16 +60,16 @@ void i2c_stop(void)
 u8 i2c_nack(void)
 {
         I2CONSET = 0x00; //Assert Not of Ack
-  I2CONCLR = 1<<SI_BIT;
-        while(((I2CONSET>>SI_BIT)&1)==0);
-        return I2DAT;
+  I2CONCLR = 1<<SI_BIT; //clear SI bit to continue reception
+        while(((I2CONSET>>SI_BIT)&1)==0); //wait until byte is received
+        return I2DAT;    //return received data
 }
 
 u8 i2c_masterack(void)
 {
         I2CONSET = 0x04; //Assert Ack
-  I2CONCLR = 1<<SI_BIT;
-        while(((I2CONSET>>SI_BIT)&1)==0);
+  I2CONCLR = 1<<SI_BIT;   //clear SI bit to continue reception
+        while(((I2CONSET>>SI_BIT)&1)==0);  //wait until byte is receibed
         I2CONCLR = 0x04; //Clear Assert Ack
-        return I2DAT;
+        return I2DAT;   //return received data
 }
