@@ -1,60 +1,112 @@
-                                    /* i2c_eeprom.c */
-#include <LPC21xx.h>
-#include "types.h"
-#include "i2c.h"
-#include "delay.h"
+#include <LPC21xx.h>   // LPC214x register definitions
+#include "types.h"      // User-defined data types (u8, u16, etc.)
+#include "i2c.h"        // I2C function declarations
+#include "delay.h"      // Delay functions
 
-void i2c_eeprom_write(u8 slaveAddr,u16 wBuffAddr,u8 dat)
+// Function to write a single byte to EEPROM
+void i2c_eeprom_write(u8 slaveAddr, u16 wBuffAddr, u8 dat)
 {
+    i2c_start();                        // Generate I2C START condition
 
-  i2c_start();
-  i2c_write(slaveAddr<<1); //slaveAddr + w
-        i2c_write((wBuffAddr>>8)&0xFF);    //wBuffAddr
-        i2c_write((wBuffAddr&0xFF));
-        i2c_write(dat);    //wBuffAddr
-        i2c_stop();
-        delay_ms(10);
+    // Send slave address with write bit (R/W = 0)
+    i2c_write(slaveAddr << 1);
+
+    // Send high byte of EEPROM memory address
+    i2c_write((wBuffAddr >> 8) & 0xFF);
+
+    // Send low byte of EEPROM memory address
+    i2c_write((wBuffAddr & 0xFF));
+
+    // Send data byte to be written
+    i2c_write(dat);
+
+    i2c_stop();                         // Generate I2C STOP condition
+
+    // Wait for EEPROM internal write cycle to complete
+    delay_ms(10);
 }
 
-u8 i2c_eeprom_read(u8 slaveAddr,u16 rBuffAddr)
+// Function to read a single byte from EEPROM
+u8 i2c_eeprom_read(u8 slaveAddr, u16 rBuffAddr)
 {
-        u8 dat;
-        i2c_start();
-  i2c_write(slaveAddr<<1); //slaveAddr + w
-        i2c_write((rBuffAddr>>8)&0xFF);    //rBuffAddr
-        i2c_write((rBuffAddr&0xFF));
-        i2c_restart();
-        i2c_write(slaveAddr<<1|1); //slaveAddr + r
-  dat=i2c_nack();
-        i2c_stop();
-        return dat;
-}
-void i2c_eeprom_page_write(u8 slaveAddr,u8 wBuffStartAddr,u8 *p,u8 nBytes)
-{
-  u8 i;
-  i2c_start();
-  i2c_write(slaveAddr<<1);    //slaveAddr + w
-        i2c_write(wBuffStartAddr);  //wBuffStartAddr
-        for(i=0;i<nBytes;i++)
-        {
-           i2c_write(p[i]);             //wBuffAddr
-        }
-        i2c_stop();
-        delay_ms(10);
+    u8 dat;
+
+    i2c_start();                        // Generate I2C START condition
+
+    // Send slave address with write bit to set memory address
+    i2c_write(slaveAddr << 1);
+
+    // Send high byte of EEPROM memory address
+    i2c_write((rBuffAddr >> 8) & 0xFF);
+
+    // Send low byte of EEPROM memory address
+    i2c_write((rBuffAddr & 0xFF));
+
+    i2c_restart();                      // Generate repeated START condition
+
+    // Send slave address with read bit (R/W = 1)
+    i2c_write((slaveAddr << 1) | 1);
+
+    // Read one byte and send NACK (last byte)
+    dat = i2c_nack();
+
+    i2c_stop();                         // Generate I2C STOP condition
+
+    return dat;                         // Return the received data
 }
 
-void i2c_eeprom_seq_read(u8 slaveAddr,u8 rBuffStartAddr,u8 *p,u8 nBytes)
+// Function to write multiple bytes (page write) to EEPROM
+void i2c_eeprom_page_write(u8 slaveAddr, u8 wBuffStartAddr, u8 *p, u8 nBytes)
 {
-        u8 i;
-        i2c_start();
-  i2c_write(slaveAddr<<1); //slaveAddr + w
-        i2c_write(rBuffStartAddr);    //rBuffAddr
-        i2c_restart();
-        i2c_write(slaveAddr<<1|1); //slaveAddr + r
-        for(i=0;i<nBytes-1;i++)
-        {
-    p[i]=i2c_masterack();
-        }
-        p[i]=i2c_nack();
-        i2c_stop();
+    u8 i;
+
+    i2c_start();                        // Generate I2C START condition
+
+    // Send slave address with write bit
+    i2c_write(slaveAddr << 1);
+
+    // Send starting EEPROM memory address
+    i2c_write(wBuffStartAddr);
+
+    // Write multiple bytes sequentially
+    for(i = 0; i < nBytes; i++)
+    {
+        i2c_write(p[i]);                // Write each byte from buffer
+    }
+
+    i2c_stop();                         // Generate I2C STOP condition
+
+    // Wait for EEPROM internal page write cycle
+    delay_ms(10);
+}
+
+// Function to read multiple bytes sequentially from EEPROM
+void i2c_eeprom_seq_read(u8 slaveAddr, u8 rBuffStartAddr, u8 *p, u8 nBytes)
+{
+    u8 i;
+
+    i2c_start();                        // Generate I2C START condition
+
+    // Send slave address with write bit to set start address
+    i2c_write(slaveAddr << 1);
+
+    // Send starting EEPROM memory address
+    i2c_write(rBuffStartAddr);
+
+    i2c_restart();                      // Generate repeated START condition
+
+    // Send slave address with read bit
+    i2c_write((slaveAddr << 1) | 1);
+
+    // Read all bytes except the last one
+    // Send ACK after each received byte to request more data
+    for(i = 0; i < nBytes - 1; i++)
+    {
+        p[i] = i2c_masterack();
+    }
+
+    // Read the last byte and send NACK to end communication
+    p[i] = i2c_nack();
+
+    i2c_stop();                         // Generate I2C STOP condition
 }
