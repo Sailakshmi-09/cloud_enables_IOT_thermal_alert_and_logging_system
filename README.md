@@ -55,16 +55,61 @@ Remotely through a dedicated ThingSpeak channel.
 8.Updated set points are stored in EEPROM to retain configuration during power loss.
 
 Block Diagram:
+## Block Diagram
+      +-------------------+
+      |  LM35 Temperature |
+      |      Sensor       |
+      +---------+---------+
+                | ADC
+                v
+      +-----------------------------------+
+      |             LPC2148               |
+      |         Microcontroller            |
+      |                                   |
+      |  +------+  +------+  +------+     |
+      |  | ADC |  | RTC |  |UART |     |
+      |  +------+  +------+  +------+     |
+      |                                   |
+      |  +------+  +------+  +------+     |
+      |  |EINT|  | I/O |  | I2C |     |
+      |  +------+  +------+  +------+     |
+      +---+--------+--------+-----------+
+          |        |        |
+          |        |        |
+          |        |        +-------------------+
+          |        |                            |
+          |        v                            v
+          |   +-----------+          +----------------+
+          |   | Keypad    |          | EEPROM         |
+          |   | (4x4)      |          | (AT24C256)     |
+          |   +-----------+          +----------------+
+          |
+          +--------------------+
+          | Switch / EINT |
+          +----------------+
 
-LM35 Sensor --> LPC2148 Microcontroller --> LCD Display
-|
-+--> ESP01 Wi-Fi Module --> ThingSpeak Cloud
-|
-+--> AT24C256 EEPROM
-|
-+--> Buzzer Alert
-|
-+--> 4x4 Matrix Keypad
+      +-------------------+       +-------------------+
+      | LCD Display       |       | Buzzer / LED     |
+      +---------^---------+       +---------^---------+
+                | I/O                         | I/O
+                +------------+-------------+
+                             |
+                             v
+                   +-------------------+
+                   | ESP01 Wi-Fi      |
+                   | Module (UART)    |
+                   +---------+---------+
+                             |
+                             v
+                   +-------------------+
+                   | ThingSpeak Cloud |
+                   +---------+---------+
+                             |
+                             v
+                   +-------------------+
+                   | Laptop / PC /    |
+                   | Mobile           |
+                   +-------------------+
 
 Cloud Integration:
 
@@ -103,11 +148,3 @@ Server room temperature monitoring.
 Home automation and safety systems.
 Laboratory temperature monitoring.
 Cold storage and warehouse monitoring.
-
-Author:
-
-Kuppireddysailakshmi
-
-License:
-
-This project is developed for educational and learning purposes.
