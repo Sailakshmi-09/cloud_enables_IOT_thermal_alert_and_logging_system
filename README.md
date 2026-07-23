@@ -14,37 +14,37 @@ Ensures safety and prevents overheating conditions.
 
 Features:
 
-1.Real-time temperature monitoring using the LM35 sensor.
-2.Cloud-based data logging and visualization using ThingSpeak.
-3.Configurable temperature set point.
-4.Automatic alert generation when temperature exceeds the threshold.
-5.Local set point modification using a 4x4 matrix keypad.
-6.Remote set point modification through the cloud interface.
-7.EEPROM storage for retaining set point values during power failures.
-8.LCD display for current temperature and system status.
-9.Buzzer alert for nearby personnel during overheating conditions.
+* Real-time temperature monitoring using the LM35 sensor.
+* Cloud-based data logging and visualization using ThingSpeak.
+* Configurable temperature set point.
+* Automatic alert generation when temperature exceeds the threshold.
+* Local set point modification using a 4x4 matrix keypad.
+* Remote set point modification through the cloud interface.
+* EEPROM storage for retaining set point values during power failures.
+* LCD display for current temperature and system status.
+* Buzzer alert for nearby personnel during overheating conditions.
 
 Hardware Requirements:
 
-LPC2148 Microcontroller
-LM35 Temperature Sensor
-AT24C256 EEPROM
-4x4 Matrix Keypad
-Switch (External Interrupt)
-LCD Display
-Buzzer
-ESP01 Wi-Fi Module
-DB-9 Cable / USB-UART Converter
+* LPC2148 Microcontroller
+* LM35 Temperature Sensor
+* AT24C256 EEPROM
+* 4x4 Matrix Keypad
+* Switch (External Interrupt)
+* LCD Display
+* Buzzer
+* ESP01 Wi-Fi Module
+* DB-9 Cable / USB-UART Converter
 
 Software Requirements:
 
-Keil C Compiler
-Embedded C Programming
-Flash Magic
-ThingSpeak Cloud Platform
+* Keil C Compiler
+* Embedded C Programming
+* Flash Magic
+* ThingSpeak Cloud Platform
 
 Block Diagram:
-## Block Diagram
+
       +-------------------+
       |  LM35 Temperature |
       |      Sensor       |
@@ -104,11 +104,11 @@ Cloud Integration:
 
 The project uses ThingSpeak as the IoT cloud platform for:
 
-1.Real-time temperature data logging.
-2.Data visualization through graphs and charts.
-3.Remote monitoring of temperature values.
-4.Remote updating of temperature set points.
-5.Alert notifications when overheating occurs.
+* Real-time temperature data logging.
+* Data visualization through graphs and charts.
+* Remote monitoring of temperature values.
+* Remote updating of temperature set points.
+* Alert notifications when overheating occurs.
 
 Project Workflow:
 
