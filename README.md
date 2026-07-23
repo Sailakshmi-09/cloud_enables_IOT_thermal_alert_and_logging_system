@@ -14,15 +14,15 @@ Ensures safety and prevents overheating conditions.
 
 Features:
 
-Real-time temperature monitoring using the LM35 sensor.
-Cloud-based data logging and visualization using ThingSpeak.
-Configurable temperature set point.
-Automatic alert generation when temperature exceeds the threshold.
-Local set point modification using a 4x4 matrix keypad.
-Remote set point modification through the cloud interface.
-EEPROM storage for retaining set point values during power failures.
-LCD display for current temperature and system status.
-Buzzer alert for nearby personnel during overheating conditions.
+1.Real-time temperature monitoring using the LM35 sensor.
+2.Cloud-based data logging and visualization using ThingSpeak.
+3.Configurable temperature set point.
+4.Automatic alert generation when temperature exceeds the threshold.
+5.Local set point modification using a 4x4 matrix keypad.
+6.Remote set point modification through the cloud interface.
+7.EEPROM storage for retaining set point values during power failures.
+8.LCD display for current temperature and system status.
+9.Buzzer alert for nearby personnel during overheating conditions.
 
 Hardware Requirements:
 
