@@ -11,7 +11,9 @@ Continuously monitors temperature using embedded sensors.
 Transmits real-time data to the cloud for secure logging and visualization.
 Generates timely alerts when predefined thermal thresholds are exceeded.
 Ensures safety and prevents overheating conditions.
-Features
+
+Features:
+
 Real-time temperature monitoring using the LM35 sensor.
 Cloud-based data logging and visualization using ThingSpeak.
 Configurable temperature set point.
@@ -40,19 +42,6 @@ Keil C Compiler
 Embedded C Programming
 Flash Magic
 ThingSpeak Cloud Platform
-System Working:
-1.The LM35 sensor continuously measures the ambient temperature.
-2.The LPC2148 reads the analog temperature value through its inbuilt ADC.
-3.The measured temperature is displayed on the LCD.
-4.At predefined intervals, the temperature data is transmitted to the ThingSpeak cloud.
-5.The system compares the current temperature with the stored set point.
-6.If the temperature exceeds the set point:
-An alert is sent to the cloud through a dedicated alert field.
-The buzzer is activated locally to warn nearby personnel.
-7.The set point can be updated:
-Locally using the keypad and external interrupt.
-Remotely through a dedicated ThingSpeak channel.
-8.Updated set points are stored in EEPROM to retain configuration during power loss.
 
 Block Diagram:
 ## Block Diagram
@@ -123,15 +112,7 @@ The project uses ThingSpeak as the IoT cloud platform for:
 
 Project Workflow:
 
-Initialize all peripherals (LCD, Keypad, UART, ADC, EEPROM, ESP01).
-Read the initial set point from EEPROM.
-Continuously monitor temperature using the LM35 sensor.
-Display the current temperature on the LCD.
-Send temperature data to ThingSpeak at regular intervals.
-Compare the current temperature with the set point.
-Trigger cloud and local alerts if overheating is detected.
-Periodically check for remote set point updates from ThingSpeak.
-Update EEPROM whenever the set point is changed.
+The LM35 sensor measures temperature and sends the data to the LPC2148 through the ADC. The temperature is displayed on the LCD and uploaded to ThingSpeak at regular intervals. If the temperature exceeds the predefined set point, the system activates the buzzer and sends an alert to the cloud. The set point can be changed locally via keypad or remotely through ThingSpeak, and is stored in EEPROM for reliability during power failures.
 
 Applications:
 
