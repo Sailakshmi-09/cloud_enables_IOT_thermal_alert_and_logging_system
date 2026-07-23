@@ -115,11 +115,11 @@ Cloud Integration:
 
 The project uses ThingSpeak as the IoT cloud platform for:
 
-Real-time temperature data logging.
-Data visualization through graphs and charts.
-Remote monitoring of temperature values.
-Remote updating of temperature set points.
-Alert notifications when overheating occurs.
+1.Real-time temperature data logging.
+2.Data visualization through graphs and charts.
+3.Remote monitoring of temperature values.
+4.Remote updating of temperature set points.
+5.Alert notifications when overheating occurs.
 
 Project Workflow:
 
@@ -133,18 +133,10 @@ Trigger cloud and local alerts if overheating is detected.
 Periodically check for remote set point updates from ThingSpeak.
 Update EEPROM whenever the set point is changed.
 
-Future Enhancements:
-
-Add SMS or email alert notifications.
-Integrate a mobile application for monitoring and control.
-Support multiple temperature sensors for zone-based monitoring.
-Implement data analytics for predictive maintenance.
-Add battery backup for uninterrupted operation.
-
 Applications:
 
-Industrial equipment monitoring.
-Server room temperature monitoring.
-Home automation and safety systems.
-Laboratory temperature monitoring.
-Cold storage and warehouse monitoring.
+1.Industrial equipment monitoring.
+2.Server room temperature monitoring.
+3.Home automation and safety systems.
+4.Laboratory temperature monitoring.
+5.Cold storage and warehouse monitoring.
