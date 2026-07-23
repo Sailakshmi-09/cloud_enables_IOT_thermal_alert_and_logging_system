@@ -116,8 +116,8 @@ The LM35 sensor measures temperature and sends the data to the LPC2148 through t
 
 Applications:
 
-1.Industrial equipment monitoring.
-2.Server room temperature monitoring.
-3.Home automation and safety systems.
-4.Laboratory temperature monitoring.
-5.Cold storage and warehouse monitoring.
+* Industrial equipment monitoring
+* Server room temperature monitoring.
+* Home automation and safety systems.
+* Laboratory temperature monitoring.
+* Cold storage and warehouse monitoring.
