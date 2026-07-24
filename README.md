@@ -1,4 +1,4 @@
-<img width="1515" height="1038" alt="image" src="https://github.com/user-attachments/assets/961be4f4-dae3-4e32-a995-cb291ebc0054" />Cloud-Enabled IoT Thermal Alert and Logging System:
+Cloud-Enabled IoT Thermal Alert and Logging System:
 Project Overview:
 
 The Cloud-Enabled IoT Thermal Alert and Logging System is an embedded IoT project designed to continuously monitor temperature using an LM35 sensor, transmit real-time temperature data to the cloud, and generate alerts when the temperature exceeds a predefined threshold. The system provides both local and remote configuration of temperature set points, ensuring reliable thermal monitoring and safety.
