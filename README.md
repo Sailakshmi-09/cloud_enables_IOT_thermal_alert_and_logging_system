@@ -1,38 +1,35 @@
 ## 🌡️ Cloud-Enabled IoT Thermal Alert and Logging System:
 
-# 🌡️ Cloud-Enabled IoT Thermal Alert and Logging System
 
-## 📖 Overview
+📖 About
 
-## 🎯 Aim
+🎯 Aim
 
-## 🔄 Flow Diagram
+🔄 Workflow
 
-## ✨ Features
+✨ Features
 
-## 🛠️ Hardware Requirements
+🛠️ Hardware
 
-## 💻 Software Requirements
+💻 Software
 
-## 🏗️ System Architecture
+🏗️ Architecture
 
-## 🖼️ Block Diagram
+🖼️ Block Diagram
 
-## ⚙️ Working Principle
+⚙️ Working
 
-## 📂 Project Structure
+📂 Structure
 
-## 🚀 Implementation Steps
+🚀 Setup
 
-## 🎓 Learning Outcomes
+🎓 Learning Outcomes
 
-## 🔮 Future Enhancements
+🔮 Future Enhancements
 
-## 🚀 Applications
+👨‍💻 Author
 
-## 👨‍💻 Author
-
-## 📄 License
+📄 License
 
 ## 📖 Overview
 
