@@ -1,4 +1,4 @@
-Cloud-Enabled IoT Thermal Alert and Logging System:
+<img width="1515" height="1038" alt="image" src="https://github.com/user-attachments/assets/961be4f4-dae3-4e32-a995-cb291ebc0054" />Cloud-Enabled IoT Thermal Alert and Logging System:
 Project Overview:
 
 The Cloud-Enabled IoT Thermal Alert and Logging System is an embedded IoT project designed to continuously monitor temperature using an LM35 sensor, transmit real-time temperature data to the cloud, and generate alerts when the temperature exceeds a predefined threshold. The system provides both local and remote configuration of temperature set points, ensuring reliable thermal monitoring and safety.
@@ -45,60 +45,11 @@ Software Requirements:
 
 Block Diagram:
 
-      +-------------------+
-      |  LM35 Temperature |
-      |      Sensor       |
-      +---------+---------+
-                | ADC
-                v
-      +-----------------------------------+
-      |             LPC2148               |
-      |         Microcontroller            |
-      |                                   |
-      |  +------+  +------+  +------+     |
-      |  | ADC |  | RTC |  |UART |     |
-      |  +------+  +------+  +------+     |
-      |                                   |
-      |  +------+  +------+  +------+     |
-      |  |EINT|  | I/O |  | I2C |     |
-      |  +------+  +------+  +------+     |
-      +---+--------+--------+-----------+
-          |        |        |
-          |        |        |
-          |        |        +-------------------+
-          |        |                            |
-          |        v                            v
-          |   +-----------+          +----------------+
-          |   | Keypad    |          | EEPROM         |
-          |   | (4x4)      |          | (AT24C256)     |
-          |   +-----------+          +----------------+
-          |
-          +--------------------+
-          | Switch / EINT |
-          +----------------+
+                   <img width="1515" height="1038" alt="ChatGPT Image Jul 24, 2026, 05_32_37 PM" src="https://github.com/user-attachments/assets/a40d1a03-86f6-4ba5-bfe3-0af90215cf8d" />
 
-      +-------------------+       +-------------------+
-      | LCD Display       |       | Buzzer / LED     |
-      +---------^---------+       +---------^---------+
-                | I/O                         | I/O
-                +------------+-------------+
-                             |
-                             v
-                   +-------------------+
-                   | ESP01 Wi-Fi      |
-                   | Module (UART)    |
-                   +---------+---------+
-                             |
-                             v
-                   +-------------------+
-                   | ThingSpeak Cloud |
-                   +---------+---------+
-                             |
-                             v
-                   +-------------------+
-                   | Laptop / PC /    |
-                   | Mobile           |
-                   +-------------------+
+
+
+                   
 
 Cloud Integration:
 
