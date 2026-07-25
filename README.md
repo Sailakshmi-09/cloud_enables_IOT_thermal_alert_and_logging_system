@@ -86,7 +86,8 @@ The **LPC2148 ARM7 microcontroller** acts as the central controller of the syste
 
 ## Block Diagram:
 
-<img width="1515" height="1038" alt="ChatGPT Image Jul 24, 2026, 05_32_37 PM" src="https://github.com/user-attachments/assets/b619456d-1694-4d57-a061-9a5eeeb327ca" />
+<img width="1514" height="1039" alt="image" src="https://github.com/user-attachments/assets/c0fc52c5-a149-4c38-b78f-b1d520ede593" />
+
 
 
 ## ⚙️ Working Principle
