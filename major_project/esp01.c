@@ -42,18 +42,37 @@ if(strstr(buff,"OK"))
         }
         //disable command echo
          Write_CMD_LCD(0x01);
-        Write_CMD_LCD(0x80);
-        Write_str_LCD("ATE0");
-        delay_ms(1000);
-        UART0_Str("ATE0\r\n");
-        i=0;memset(buff,'\0',350);
-        while(i<4);
-        delay_ms(500);
-        buff[i] = '\0';
-        Write_CMD_LCD(0x01);
-        Write_CMD_LCD(0x80);
-        Write_str_LCD(buff);
-        delay_ms(2000);
+        Write_CMD_LCD(0x01);              // Clear the LCD display.
+
+Write_CMD_LCD(0x80);              // Move the cursor to the first row, first column.
+
+Write_str_LCD("ATE0");            // Display "ATE0" on the LCD to indicate the command being sent.
+
+delay_ms(1000);                   // Wait for 1 second so the message is visible.
+
+UART0_Str("ATE0\r\n");            // Send the "ATE0" AT command through UART.
+                                  // '\r\n' indicates the end of the command.
+                                  // ATE0 disables command echo from the ESP8266/GSM module.
+
+i = 0;                            // Initialize the receive buffer index.
+
+memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
+
+while(i < 4);                     // Wait until at least 4 characters are received.
+                                  // The UART interrupt/service routine increments 'i'
+                                  // whenever a character is received.
+
+delay_ms(500);                    // Wait an additional 500 ms to ensure the complete response is received.
+
+buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
+
+Write_CMD_LCD(0x01);              // Clear the LCD before displaying the received response.
+
+Write_CMD_LCD(0x80);              // Move the cursor to the beginning of the first row.
+
+Write_str_LCD(buff);              // Display the received response (e.g., "OK") on the LCD.
+
+delay_ms(2000);                   // Keep the response displayed for 2 seconds.
         //check response for ATEO command 
 if(strstr(buff,"OK"))
         {
@@ -69,19 +88,37 @@ if(strstr(buff,"OK"))
                 return;
         }
         //set single connection mode
-          Write_CMD_LCD(0x01);
-        Write_CMD_LCD(0x80);
-        Write_str_LCD("AT+CIPMUX");
-        delay_ms(1000);
-        UART0_Str("AT+CIPMUX=0\r\n");
-        i=0;memset(buff,'\0',350);
-        while(i<4);
-        delay_ms(500);
-        buff[i] = '\0';
-        Write_CMD_LCD(0x01);
-        Write_CMD_LCD(0x80);
-        Write_str_LCD(buff);
-        delay_ms(2000);
+          Write_CMD_LCD(0x01);            // Clear the LCD display.
+Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
+
+Write_str_LCD("AT+CIPMUX");       // Display the AT command name on the LCD.
+
+delay_ms(1000);                   // Wait for 1 second so the command is visible.
+
+UART0_Str("AT+CIPMUX=0\r\n");     // Send the "AT+CIPMUX=0" command to the ESP8266.
+                                  // CIPMUX=0 configures the ESP8266 for Single Connection Mode.
+                                  // '\r\n' marks the end of the AT command.
+
+i = 0;                            // Reset the receive buffer index.
+
+memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
+
+while(i < 4);                     // Wait until at least 4 characters are received.
+                                  // The UART receive interrupt updates 'i' as data arrives.
+
+delay_ms(500);                    // Wait an additional 500 ms to ensure the complete response is received.
+
+buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
+
+Write_CMD_LCD(0x01);              // Clear the LCD before displaying the response.
+
+Write_CMD_LCD(0x80);              // Move the cursor to the first row, first column.
+
+Write_str_LCD(buff);              // Display the received response (typically "OK") on the LCD.
+
+delay_ms(2000);                   // Keep the response displayed for 2 seconds.
+Write_CMD_LCD(0x01);            // Clear the LCD display.
+        
 if(strstr(buff,"OK"))
         {
                 Write_CMD_LCD(0xC0);
