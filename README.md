@@ -1,5 +1,6 @@
-## 🌡️ Cloud-Enabled IoT Thermal Alert and Logging System:
+## 🌡️ Cloud-Enabled IoT Thermal Alert and Logging System
 
+## table of contents:
 
 📖 About
 
