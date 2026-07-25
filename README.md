@@ -1,6 +1,6 @@
 ## 🌡️ Cloud-Enabled IoT Thermal Alert and Logging System
 
-## table of contents:
+## Table of contents:
 
 📖 About
 
@@ -87,7 +87,6 @@ The **LPC2148 ARM7 microcontroller** acts as the central controller of the syste
 ## Block Diagram:
 
 <img width="1515" height="1038" alt="ChatGPT Image Jul 24, 2026, 05_32_37 PM" src="https://github.com/user-attachments/assets/b619456d-1694-4d57-a061-9a5eeeb327ca" />
-
 
 
 ## ⚙️ Working Principle
