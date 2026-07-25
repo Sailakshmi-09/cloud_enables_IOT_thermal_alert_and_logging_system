@@ -40,39 +40,39 @@ void esp01_connectAP(void)
                 delay_ms(1000);
                 return;
         }
-//disable command echo
- Write_CMD_LCD(0x01);              // Clear the LCD display.
+          //disable command echo
+          Write_CMD_LCD(0x01);              // Clear the LCD display.
 
-Write_CMD_LCD(0x80);              // Move the cursor to the first row, first column.
+          Write_CMD_LCD(0x80);              // Move the cursor to the first row, first column.
 
-Write_str_LCD("ATE0");            // Display "ATE0" on the LCD to indicate the command being sent.
+          Write_str_LCD("ATE0");            // Display "ATE0" on the LCD to indicate the command being sent.
 
-delay_ms(1000);                   // Wait for 1 second so the message is visible.
+          delay_ms(1000);                   // Wait for 1 second so the message is visible.
 
-UART0_Str("ATE0\r\n");            // Send the "ATE0" AT command through UART.
+          UART0_Str("ATE0\r\n");            // Send the "ATE0" AT command through UART.
                                   // '\r\n' indicates the end of the command.
                                   // ATE0 disables command echo from the ESP8266/GSM module.
 
-i = 0;                            // Initialize the receive buffer index.
+          i = 0;                            // Initialize the receive buffer index.
 
-memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
+          memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
 
-while(i < 4);                     // Wait until at least 4 characters are received.
+          while(i < 4);                     // Wait until at least 4 characters are received.
                                   // The UART interrupt/service routine increments 'i'
                                   // whenever a character is received.
 
-delay_ms(500);                    // Wait an additional 500 ms to ensure the complete response is received.
+          delay_ms(500);                    // Wait an additional 500 ms to ensure the complete response is received.
 
-buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
+           buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
 
-Write_CMD_LCD(0x01);              // Clear the LCD before displaying the received response.
+           Write_CMD_LCD(0x01);              // Clear the LCD before displaying the received response.
 
-Write_CMD_LCD(0x80);              // Move the cursor to the beginning of the first row.
+           Write_CMD_LCD(0x80);              // Move the cursor to the beginning of the first row.
 
-Write_str_LCD(buff);              // Display the received response (e.g., "OK") on the LCD.
+           Write_str_LCD(buff);              // Display the received response (e.g., "OK") on the LCD.
 
-delay_ms(2000);                   // Keep the response displayed for 2 seconds.
-//check response for ATEO command 
+           delay_ms(2000);                   // Keep the response displayed for 2 seconds.
+         //check response for ATEO command 
        if(strstr(buff,"OK"))
         {
                 Write_CMD_LCD(0xC0);
@@ -87,35 +87,35 @@ delay_ms(2000);                   // Keep the response displayed for 2 seconds.
                 return;
         }
         //set single connection mode
-Write_CMD_LCD(0x01);            // Clear the LCD display.
-Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
+        Write_CMD_LCD(0x01);            // Clear the LCD display.
+        Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
 
-Write_str_LCD("AT+CIPMUX");       // Display the AT command name on the LCD.
+        Write_str_LCD("AT+CIPMUX");       // Display the AT command name on the LCD.
 
-delay_ms(1000);                   // Wait for 1 second so the command is visible.
+        delay_ms(1000);                   // Wait for 1 second so the command is visible.
 
-UART0_Str("AT+CIPMUX=0\r\n");     // Send the "AT+CIPMUX=0" command to the ESP8266.
+        UART0_Str("AT+CIPMUX=0\r\n");     // Send the "AT+CIPMUX=0" command to the ESP8266.
                                   // CIPMUX=0 configures the ESP8266 for Single Connection Mode.
                                   // '\r\n' marks the end of the AT command.
 
-i = 0;                            // Reset the receive buffer index.
+        i = 0;                            // Reset the receive buffer index.
 
-memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
+        memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
 
-while(i < 4);                     // Wait until at least 4 characters are received.
+        while(i < 4);                     // Wait until at least 4 characters are received.
                                   // The UART receive interrupt updates 'i' as data arrives.
 
-delay_ms(500);                    // Wait an additional 500 ms to ensure the complete response is received.
+        delay_ms(500);                    // Wait an additional 500 ms to ensure the complete response is received.
 
-buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
+        buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
 
-Write_CMD_LCD(0x01);              // Clear the LCD before displaying the response.
+        Write_CMD_LCD(0x01);              // Clear the LCD before displaying the response.
 
-Write_CMD_LCD(0x80);              // Move the cursor to the first row, first column.
+        Write_CMD_LCD(0x80);              // Move the cursor to the first row, first column.
 
-Write_str_LCD(buff);              // Display the received response (typically "OK") on the LCD.
+        Write_str_LCD(buff);              // Display the received response (typically "OK") on the LCD.
 
-delay_ms(2000);                   // Keep the response displayed for 2 seconds.
+        delay_ms(2000);                   // Keep the response displayed for 2 seconds.
         
         if(strstr(buff,"OK"))
         {
@@ -131,37 +131,37 @@ delay_ms(2000);                   // Keep the response displayed for 2 seconds.
                 return;
         }
         //disconnect from any previously connected wi-fi network
-Write_CMD_LCD(0x01);              // Clear the LCD display.
+        Write_CMD_LCD(0x01);              // Clear the LCD display.
 
-Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
+        Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
 
-Write_str_LCD("AT+CWQAP");        // Display the command name "AT+CWQAP" on the LCD.
+        Write_str_LCD("AT+CWQAP");        // Display the command name "AT+CWQAP" on the LCD.
 
-delay_ms(1000);                   // Wait for 1 second so the command is visible.
+        delay_ms(1000);                   // Wait for 1 second so the command is visible.
 
-UART0_Str("AT+CWQAP\r\n");        // Send the "AT+CWQAP" command to the ESP8266.
+        UART0_Str("AT+CWQAP\r\n");        // Send the "AT+CWQAP" command to the ESP8266.
                                   // This command disconnects the ESP8266 from the currently connected Wi-Fi Access Point (AP).
                                   // '\r\n' indicates the end of the AT command.
 
-i = 0;                            // Reset the receive buffer index.
+        i = 0;                            // Reset the receive buffer index.
 
-memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
+         memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
 
-while(i < 4);                     // Wait until at least 4 characters are received.
+         while(i < 4);                     // Wait until at least 4 characters are received.
                                   // The UART receive interrupt/service routine increments 'i'
                                   // whenever a character is received.
 
-delay_ms(1500);                   // Wait an additional 1.5 seconds to ensure the complete response is received.
+         delay_ms(1500);                   // Wait an additional 1.5 seconds to ensure the complete response is received.
 
-buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
+        buff[i] = '\0';                   // Append a NULL terminator to make the received data a valid C string.
 
-Write_CMD_LCD(0x01);              // Clear the LCD before displaying the module's response.
+        Write_CMD_LCD(0x01);              // Clear the LCD before displaying the module's response.
 
-Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
+        Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
 
-Write_str_LCD(buff);              // Display the received response (e.g., "OK") on the LCD.
+        Write_str_LCD(buff);              // Display the received response (e.g., "OK") on the LCD.
 
-delay_ms(2000);                   // Keep the response displayed for 2 seconds.
+        delay_ms(2000);                   // Keep the response displayed for 2 seconds.
         if(strstr(buff,"OK"))
         {
                 Write_CMD_LCD(0xC0);
@@ -209,40 +209,40 @@ delay_ms(2000);                   // Keep the response displayed for 2 seconds.
 void esp01_sendToThingspeak(char val,char n)
 {
         //start TCP connection with thingspeak server
-Write_CMD_LCD(0x01);                  // Clear the LCD display.
+        Write_CMD_LCD(0x01);                  // Clear the LCD display.
 
-Write_CMD_LCD(0x80);                  // Move the LCD cursor to the first row, first column.
+        Write_CMD_LCD(0x80);                  // Move the LCD cursor to the first row, first column.
 
-Write_str_LCD("AT+CIPSTART");         // Display the command name "AT+CIPSTART" on the LCD.
+        Write_str_LCD("AT+CIPSTART");         // Display the command name "AT+CIPSTART" on the LCD.
 
-delay_ms(1000);                       // Wait for 1 second so the command is visible.
+        delay_ms(1000);                       // Wait for 1 second so the command is visible.
 
-UART0_Str("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n");
+        UART0_Str("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n");
                                       // Send the AT+CIPSTART command to the ESP8266.
                                       // "TCP"                 -> Select TCP protocol.
                                       // "api.thingspeak.com" -> ThingSpeak server address.
                                       // 80                   -> HTTP server port number.
                                       // '\r\n'               -> Marks the end of the AT command.
 
-i = 0;                                // Reset the receive buffer index.
+         i = 0;                                // Reset the receive buffer index.
 
-memset(buff, '\0', 350);              // Clear the receive buffer by filling it with NULL characters.
+        memset(buff, '\0', 350);              // Clear the receive buffer by filling it with NULL characters.
 
-while(i < 5);                         // Wait until at least 5 characters are received.
+        while(i < 5);                         // Wait until at least 5 characters are received.
                                       // The UART receive interrupt/service routine updates 'i'
                                       // as characters are received from the ESP8266.
 
-delay_ms(2500);                       // Wait an additional 2.5 seconds to allow the
+        delay_ms(2500);                       // Wait an additional 2.5 seconds to allow the
                                       // ESP8266 to establish the TCP connection.
 
-buff[i] = '\0';                       // Append a NULL terminator to make the received
+        buff[i] = '\0';                       // Append a NULL terminator to make the received
                                       // data a valid C string.
 
-Write_CMD_LCD(0x01);                  // Clear the LCD before displaying the response.
+        Write_CMD_LCD(0x01);                  // Clear the LCD before displaying the response.
 
-Write_CMD_LCD(0x80);                  // Move the cursor to the first row, first column.
+        Write_CMD_LCD(0x80);                  // Move the cursor to the first row, first column.
 
-Write_str_LCD(buff);                  // Display the ESP8266 response on the LCD
+        Write_str_LCD(buff);                  // Display the ESP8266 response on the LCD
                                       // (e.g., "CONNECT", "OK", or an error message).
         delay_ms(2000);
         //check if TCP connection is established
@@ -252,13 +252,20 @@ Write_str_LCD(buff);                  // Display the ESP8266 response on the LCD
                 Write_str_LCD("OK");
                 delay_ms(1000);
 
-                Write_CMD_LCD(0x01);
-                Write_CMD_LCD(0x80);
-                Write_str_LCD("AT+CIPSEND");
-                delay_ms(1000);
-                UART0_Str("AT+CIPSEND=49\r\n");
+                Write_CMD_LCD(0x01);              // Clear the LCD display.
+
+                Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
+
+                Write_str_LCD("AT+CIPSEND");      // Display the command name "AT+CIPSEND" on the LCD.
+
+                delay_ms(1000);                   // Wait for 1 second so the command is visible.
+
+                UART0_Str("AT+CIPSEND=49\r\n");   // Send the AT+CIPSEND command to the ESP8266.
+                                  // 49 specifies that the next 49 bytes of data
+                                  // (e.g., an HTTP GET request) will be transmitted
+                                  // over the already established TCP connection.
+                                  // '\r\n' marks the end of the AT command.
                 i=0;memset(buff,'\0',350);
-                //while(buff[i] != '>');
                 delay_ms(500);
                 //send HTTP GET request to update field1
                 if(n==1)
@@ -302,62 +309,72 @@ Write_str_LCD(buff);                  // Display the ESP8266 response on the LCD
 }
 void espo1_ReadfromThingspeak(void)
 {
-u8 arr[350];        //Temporary buffer for received data
-//start TCP connection with thingspeak
-Write_CMD_LCD(0x01);                  // Clear the LCD display.
+            u8 arr[350];        //Temporary buffer for received data
+           //start TCP connection with thingspeak
+           Write_CMD_LCD(0x01);                  // Clear the LCD display.
 
-Write_CMD_LCD(0x80);                  // Move the LCD cursor to the first row, first column.
+           Write_CMD_LCD(0x80);                  // Move the LCD cursor to the first row, first column.
 
-Write_str_LCD("AT+CIPSTART");         // Display the command name "AT+CIPSTART" on the LCD.
+           Write_str_LCD("AT+CIPSTART");         // Display the command name "AT+CIPSTART" on the LCD.
 
-delay_ms(1000);                       // Wait for 1 second so the command is visible.
+           delay_ms(1000);                       // Wait for 1 second so the command is visible.
 
-UART0_Str("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n");
+           UART0_Str("AT+CIPSTART=\"TCP\",\"api.thingspeak.com\",80\r\n");
                                       // Send the AT+CIPSTART command to the ESP8266.
                                       // "TCP"                 -> Use TCP protocol.
                                       // "api.thingspeak.com" -> ThingSpeak server address.
                                       // 80                   -> HTTP port number.
                                       // '\r\n'               -> End of the AT command.
 
-i = 0;                                // Reset the receive buffer index.
+           i = 0;                                // Reset the receive buffer index.
 
-memset(buff, '\0', 350);              // Clear the receive buffer by filling it with NULL characters.
+           memset(buff, '\0', 350);              // Clear the receive buffer by filling it with NULL characters.
 
-while(i < 5);                         // Wait until at least 5 characters are received.
+           while(i < 5);                         // Wait until at least 5 characters are received.
                                       // The UART receive interrupt/service routine
                                       // increments 'i' whenever a character is received.
 
-delay_ms(2500);                       // Wait an additional 2.5 seconds to allow
+          delay_ms(2500);                       // Wait an additional 2.5 seconds to allow
                                       // the ESP8266 to establish the TCP connection
                                       // and send the complete response.
 
-buff[i] = '\0';                       // Append a NULL terminator to make the
+          buff[i] = '\0';                       // Append a NULL terminator to make the
                                       // received data a valid C string.
 
-Write_CMD_LCD(0x01);                  // Clear the LCD before displaying the response.
+          Write_CMD_LCD(0x01);                  // Clear the LCD before displaying the response.
 
-Write_CMD_LCD(0x80);                  // Move the LCD cursor to the first row, first column.
+          Write_CMD_LCD(0x80);                  // Move the LCD cursor to the first row, first column.
 
-Write_str_LCD(buff);                  // Display the response received from the ESP8266
+          Write_str_LCD(buff);                  // Display the response received from the ESP8266
                                       // (e.g., "CONNECT", "OK", or an error message).
 
-delay_ms(2000);                       // Keep the response displayed on the LCD
+           delay_ms(2000);                       // Keep the response displayed on the LCD
                                       // for 2 seconds before continuing.
- Write_CMD_LCD(0x01);
+           Write_CMD_LCD(0x01);
  //check TCP connection
- if(strstr(buff,"CONNECT") || strstr(buff,"ALREADY CONNECTED"))
+       if(strstr(buff,"CONNECT") || strstr(buff,"ALREADY CONNECTED"))
         {
                 Write_CMD_LCD(0xC0);
                 Write_str_LCD("OK");
                 delay_ms(1000);
 
                 Write_CMD_LCD(0x01);
-                Write_CMD_LCD(0x80);
-                Write_str_LCD("AT+CIPSEND");
-                delay_ms(1000);
-                UART0_Str("AT+CIPSEND=72\r\n");
-                i=0;memset(buff,'\0',350);
-                //while(buff[i] != '>');
+                Write_CMD_LCD(0x80);              // Move the LCD cursor to the first row, first column.
+
+                Write_str_LCD("AT+CIPSEND");      // Display the command name "AT+CIPSEND" on the LCD.
+
+                delay_ms(1000);                   // Wait for 1 second so the command is visible.
+
+                UART0_Str("AT+CIPSEND=72\r\n");   // Send the AT+CIPSEND command to the ESP8266.
+                                  // 72 specifies that 72 bytes of data will be sent
+                                  // over the already established TCP connection.
+                                  // '\r\n' indicates the end of the AT command.
+
+                i = 0;                            // Reset the receive buffer index before receiving the response.
+
+                memset(buff, '\0', 350);          // Clear the receive buffer by filling it with NULL characters.
+                                  // This removes any previous data before storing
+                                  // the new response from the ESP8266.
                 delay_ms(500);
                 //need to change the thingspeak write API key accordind to your channel
                 UART0_Str("GET /channels/3380085/fields/1.json?api_key=2AUGIDG19FMFFZJI&results=1");
@@ -372,7 +389,8 @@ delay_ms(2000);                       // Keep the response displayed on the LCD
                 delay_ms(2000);
                 strcpy((char *)arr,buff);    //copy received data
                 //check if data was received successfully    
- if(strstr(buff,"SEND OK"))                                                                                                                                  {
+              if(strstr(buff,"SEND OK"))  
+              {
                         Write_CMD_LCD(0x01);
                         Write_str_LCD("DATA UPDATED");
                         delay_ms(1000);
