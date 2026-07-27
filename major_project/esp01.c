@@ -436,13 +436,7 @@ void extract_sp(u8 *p)
                         if(q)
                         {
                                 q=q+2; //move to the actual value
-                        /*      Write_CMD_LCD(0x01);
-                                Write_str_LCD("extract2:");
-                                delay_ms(2000);
-                                Write_CMD_LCD(0x01);
-                                Write_str_LCD((char *)q);
-                                delay_ms(5000);*/
-//copy characters until closing quote
+                                //copy characters until closing quote
                                 for(;*q!='"';q++)
                                 {
                                         r[l++]=*q;
