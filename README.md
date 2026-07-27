@@ -170,7 +170,6 @@ Cloud-Enabled-IoT-Thermal-Alert-System/
 - 📱 Develop a **mobile application** for real-time temperature monitoring and remote control.
 - 📩 Integrate **SMS, Email, and Push Notifications** for instant thermal alerts.
 - 🔥 Support **multi-sensor temperature monitoring** for larger industrial and commercial environments.
-- 📊 Implement an **advanced analytics dashboard** with historical trends, reports, and performance insights.
 - 🔐 Enhance system security with **user authentication**, encrypted communication, and secure cloud access.
 
 ## 👨‍💻 Author
