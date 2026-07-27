@@ -170,13 +170,8 @@ Cloud-Enabled-IoT-Thermal-Alert-System/
 - 📱 Develop a **mobile application** for real-time temperature monitoring and remote control.
 - 📩 Integrate **SMS, Email, and Push Notifications** for instant thermal alerts.
 - 🔥 Support **multi-sensor temperature monitoring** for larger industrial and commercial environments.
-- 🌡️ Extend the system to monitor **temperature and humidity** using sensors such as **DHT22**.
 - 📊 Implement an **advanced analytics dashboard** with historical trends, reports, and performance insights.
-- 🤖 Incorporate **AI and Machine Learning** for predictive thermal analysis and anomaly detection.
 - 🔐 Enhance system security with **user authentication**, encrypted communication, and secure cloud access.
-- ☀️ Enable **solar-powered deployment** for remote and off-grid monitoring applications.
-- 🌍 Support multiple IoT cloud platforms such as **AWS IoT, Azure IoT Hub, and Blynk**.
-- 📡 Add **OTA (Over-the-Air) firmware updates** for remote software maintenance and upgrades.
 
 ## 👨‍💻 Author
 
