@@ -86,7 +86,8 @@ The **LPC2148 ARM7 microcontroller** acts as the central controller of the syste
 
 ## Block Diagram:
 
-<img width="1514" height="1039" alt="image" src="https://github.com/user-attachments/assets/c0fc52c5-a149-4c38-b78f-b1d520ede593" />
+<img width="1515" height="1038" alt="image" src="https://github.com/user-attachments/assets/eba8eda1-5ba5-4423-a1b7-18fc1d042067" />
+
 
 
 
@@ -164,6 +165,9 @@ Cloud-Enabled-IoT-Thermal-Alert-System/
 - 🔄 Learned the design and implementation of **real-time embedded systems** for continuous monitoring applications.
 - 🚨 Developed an understanding of **IoT-based thermal monitoring and alert systems** with automatic threshold detection.
 - 🔒 Gained experience in **EEPROM data management**, ensuring persistent storage of configuration parameters during power failures.
+## Results
+<img width="602" height="415" alt="Screenshot 2026-07-27 200323" src="https://github.com/user-attachments/assets/5b006abe-f238-4187-b46a-bdd192059fa6" />
+
   
 ## 🔮 Future Enhancements
 
